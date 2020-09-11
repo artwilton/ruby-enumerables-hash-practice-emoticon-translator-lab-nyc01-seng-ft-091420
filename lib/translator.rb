@@ -7,11 +7,15 @@ def load_library(file_path)
 end
 
 def get_japanese_emoticon(file_path, emoticon)
-  emoticon_list = load_library(file_path)
-  # code goes here
+  if translation = load_library(file_path).find {|key, value| value[:japanese] == emoticon }
+    final_message = translation[1][:english]
+  else
+    final_message = "Sorry, that emoticon was not found"
+  end
+  final_message
 end
 
 def get_english_meaning
-  emoticon_list = load_library(file_path)
+  load_library(file_path)
   # code goes here
 end
